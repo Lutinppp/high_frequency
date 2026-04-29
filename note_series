@@ -1,0 +1,228 @@
+SERIES INVENTORY — HIGH FREQUENCY EUROPEAN ENERGY DATA
+======================================================================
+Sources: ENTSOG Transparency Platform + FRED (St. Louis Fed)
+Generated: 2026-04-29
+
+======================================================================
+I. ENTSOG — European Gas Flow Data
+======================================================================
+
+Platform : ENTSOG Transparency Platform (transparency.entsog.eu)
+API      : /api/v1/AggregatedData, month-by-month pagination
+Coverage : 2019-11-01 to 2026-04-29  (47,048 daily rows)
+Output   : entsog_daily_selected.csv  |  entsog_weekly_panel.csv (5,388 rows)
+
+Countries (7):
+  DE  Germany
+  FR  France
+  IT  Italy
+  NL  Netherlands
+  ES  Spain
+  UK  United Kingdom
+  EU  Aggregate (sum of DE+FR+IT+NL+ES+UK)
+
+Indicators (2):
+  Physical Flow   — actual gas flows (GWh/day)
+  Allocation      — nominated/allocated gas flows (GWh/day)
+
+Weekly panel columns:
+  countryKey   — ISO-2 country code
+  indicator    — Physical Flow | Allocation
+  week_start   — Monday of the ISO week
+  twh_week     — total TWh for the week
+  wow_pct      — week-over-week % change
+  yoy_pct      — year-over-year % change (same week -52 weeks)
+
+======================================================================
+II. FRED — Energy Price Indices (33 series)
+======================================================================
+
+All series: European Union / Euro Area geography, via FRED API
+
+-- II.A  Brent Crude Oil — Europe  (3 series) --
+  DCOILBRENTEU     Daily            1987-05-20 – 2026-04-20  USD/barrel
+  WCOILBRENTEU     Weekly (Fri)     1987-05-15 – 2026-04-17  USD/barrel
+  MCOILBRENTEU     Monthly          1987-05-01 – 2026-03-01  USD/barrel
+
+-- II.B  Nasdaq Europe Energy (broad Europe + EMEA) (6 series, Daily, 2001-03-30 – 2026-04-28) --
+  NASDAQNQEU60                    Nasdaq Europe Energy Index
+  NASDAQNQEU60LM                  Nasdaq Europe Energy Large Mid Cap Index
+  NASDAQNQEU60N                   Nasdaq Europe Energy Net Total Return Index
+  NASDAQNQEU60T                   Nasdaq Europe Energy Total Return Index
+  NASDAQNQEU60LMN                 Nasdaq Europe Energy Large Mid Cap Net Total Return Index
+  NASDAQNQEU60LMT                 Nasdaq Europe Energy Large Mid Cap Total Return Index
+
+-- II.B  Nasdaq EMEA Energy (Europe+Middle East+Africa) (6 series, Daily, 2001-03-30 – 2026-04-28) --
+  NASDAQNQEMEA60                  Nasdaq EMEA Energy Index
+  NASDAQNQEMEA60LM                Nasdaq EMEA Energy Large Mid Cap Index
+  NASDAQNQEMEA60N                 Nasdaq EMEA Energy Net Total Return Index
+  NASDAQNQEMEA60T                 Nasdaq EMEA Energy Total Return Index
+  NASDAQNQEMEA60LMN               Nasdaq EMEA Energy Large Mid Cap Net Total Return Index
+  NASDAQNQEMEA60LMT               Nasdaq EMEA Energy Large Mid Cap Total Return Index
+
+-- II.B  Nasdaq Eurozone Energy (Euro Area only) (6 series, Daily, 2001-03-30 – 2026-04-28) --
+  NASDAQNQEUROZ60                 Nasdaq Eurozone Energy Index
+  NASDAQNQEUROZ60LM               Nasdaq Eurozone Energy Large Mid Cap Index
+  NASDAQNQEUROZ60N                Nasdaq Eurozone Energy Net Total Return Index
+  NASDAQNQEUROZ60T                Nasdaq Eurozone Energy Total Return Index
+  NASDAQNQEUROZ60LMN              Nasdaq Eurozone Energy Large Mid Cap Net Total Return Index
+  NASDAQNQEUROZ60LMT              Nasdaq Eurozone Energy Large Mid Cap Total Return Index
+
+-- II.B  Nasdaq Developed Markets: Europe Energy (6 series, Daily, 2001-03-30 – 2026-04-28) --
+  NASDAQNQDMEU60                  Nasdaq Developed Markets Europe Energy Index
+  NASDAQNQDMEU60LM                Nasdaq Developed Markets Europe Energy Large Mid Cap Index
+  NASDAQNQDMEU60N                 Nasdaq Developed Markets Europe Energy Net Total Return Index
+  NASDAQNQDMEU60T                 Nasdaq Developed Markets Europe Energy Total Return Index
+  NASDAQNQDMEU60LMN               Nasdaq Developed Markets Europe Energy Large Mid Cap Net Total Return Index
+  NASDAQNQDMEU60LMT               Nasdaq Developed Markets Europe Energy Large Mid Cap Total Return Index
+
+-- II.B  Nasdaq Emerging Markets: Europe Energy (6 series, Daily, 2002-09-30 – 2026-04-28) --
+  NASDAQNQEMEU60                  Nasdaq Emerging Markets Europe Energy Index
+  NASDAQNQEMEU60LM                Nasdaq Emerging Markets Europe Energy Large Mid Cap Index
+  NASDAQNQEMEU60N                 Nasdaq Emerging Markets Europe Energy Net Total Return Index
+  NASDAQNQEMEU60T                 Nasdaq Emerging Markets Europe Energy Total Return Index
+  NASDAQNQEMEU60LMN               Nasdaq Emerging Markets Europe Energy Large Mid Cap Net Total Return Index
+  NASDAQNQEMEU60LMT               Nasdaq Emerging Markets Europe Energy Large Mid Cap Total Return Index
+
+  Variants legend:
+    (no suffix)  = Price Index (All Cap)
+    LM           = Large Mid Cap Price Index
+    N            = Net Total Return (All Cap)
+    T            = Total Return (All Cap)
+    LMN          = Large Mid Cap Net Total Return
+    LMT          = Large Mid Cap Total Return
+
+======================================================================
+III. FRED — HICP Inflation Indices (471 series)
+======================================================================
+
+Source   : Eurostat via FRED
+Coverage : 28 EU member states + Euro Area + European Union aggregates
+Period   : 1996-01-01 – 2026-03-01 (most series from 1996 or 1999)
+Frequency: Monthly | Units: Index 2025=100 | NSA
+
+Geographic breakdown:
+  European Union aggregate      : 81 series
+  Euro Area aggregate (EA-20)   : 52 series (some EA-19 variants)
+  Each of 28 EU member states   : 12–13 series per country
+    AT BE BG CY CZ DE DK EE ES FI FR GR HR HU IE
+    IT LT LU LV MT NL PL PT RO SE SI SK
+
+-- HICP Energy (total)  (72 series) --
+  Overall HICP energy sub-index. Covers all energy products.
+  Example: ENRGY0ATM086NEST — HICP: Energy for Austria
+
+-- HICP Electricity+Gas+Solid Fuels  (47 series) --
+  COICOP 04.5 — electricity, gas, solid fuels and heat energy.
+  Example: ELGAS0ATM086NEST — HICP: Electricity, Gas, Solid Fuels for Austria
+
+-- HICP Energy+Unprocessed Food  (36 series) --
+  Combined energy + unprocessed food sub-index.
+  Example: EFOODUATM086NEST — HICP: Energy and Unprocessed Food for Austria
+
+-- HICP excl. Energy  (36 series) --
+  Headline HICP excluding all energy products.
+  Example: 00XE00ATM086NEST — HICP excl. Energy for Austria
+
+-- HICP excl. Energy+Seasonal Food  (36 series) --
+  Headline HICP excluding energy and seasonal food.
+  Example: 00XESEATM086NEST — HICP excl. Energy+Seasonal Food for Austria
+
+-- HICP excl. Energy+Unprocessed Food  (36 series) --
+  Headline HICP excluding energy and unprocessed food.
+  Example: 00XFUNATM086NEST — HICP excl. Energy+Unprocessed Food for Austria
+
+-- HICP excl. Energy+Food+Alc+Tobacco  (33 series) --
+  Core HICP (excl. energy, food, alcohol, tobacco). ~26 countries.
+  Example: 00XEFDATM086NEST — HICP Core for Austria
+
+-- HICP Other Energy (Heating/Cooling)  (25 series) --
+  COICOP 04.5.5 — other fuels for heating/cooling. ~25 countries.
+  Example: CP0455ATM086NEST — HICP Other Energy for Austria
+
+-- HICP Electricity  (4 series) --
+  Electricity only (Euro Area aggregates).
+  Example: CP0451EZ19M086NEST — HICP Electricity for EA-19
+
+-- HICP Other variants  (146 series) --
+  Energy+Seasonal Food, Energy+Food, and other COICOP combinations.
+  Includes oddly-named/code-only series; 5 per country typical.
+
+======================================================================
+IV. FRED — Other Macro Series (11 series)
+======================================================================
+
+-- IV.A  Monetary Policy / Interest Rates  (1 series) --
+  ECBMLFR          Monthly  1999-01-01 – 2026-03-01
+  ECB Marginal Lending Facility Rate for Euro Area (%)
+
+-- IV.B  HICP Non-Energy Consumption  (8 series, Euro Area + Montenegro + Kosovo) --
+  IGDMI15EA20M086NEST        HICP: Industrial Goods — Euro Area (EA-20)      Monthly  1999–2026
+  SERVEA20MI15COMM086NEST    HICP: Services – Communication — Euro Area       Monthly  1999–2026
+  SERVHOAEA20MI15RECM        HICP: Services – Package Holidays — Euro Area    Monthly  1999–2026
+  IGDMI15MEM086NEST          HICP: Industrial Goods — Montenegro              Monthly  2014–2026
+  SERVMEMI15COMM086NEST      HICP: Services – Communication — Montenegro      Monthly  2014–2026
+  SERVHOAMEMI15RECM086NEST   HICP: Services – Holidays — Montenegro           Monthly  2014–2026
+  SERVXKMI15COMM086NEST      HICP: Services – Communication — Kosovo          Monthly  2015–2026
+  SERVHOAXKMI15RECM086NEST   HICP: Services – Holidays — Kosovo               Monthly  2015–2026
+
+-- IV.C  US Import Price Indexes (EU-origin goods)  (2 series) --
+  COEECZ334   Import Price Index: Computer & Electronic Mfg from EU   Monthly  2012–2026
+  COEECZ335   Import Price Index: Electrical Equipment Mfg from EU    Monthly  2012–2026
+  Note: US BLS series — measures EU export prices as seen from US side
+
+======================================================================
+V. SUMMARY
+======================================================================
+
+Source      Category                              Series   Frequency    From
+---------------------------------------------------------------------------
+ENTSOG      Gas Physical Flow (7 countries)            7   Daily        2019-11
+ENTSOG      Gas Allocation (7 countries)               7   Daily        2019-11
+FRED        Brent Crude Oil – Europe                   3   D/W/M        1987-05
+FRED        Nasdaq Europe Energy equity indices       30   Daily        2001-03
+FRED        HICP Energy (total)                       72   Monthly      1996-01
+FRED        HICP Electricity+Gas+Solid Fuels          47   Monthly      1996-01
+FRED        HICP Energy+Unprocessed Food              36   Monthly      1996-01
+FRED        HICP excl. Energy                         36   Monthly      1996-01
+FRED        HICP excl. Energy+Seasonal Food           36   Monthly      1996-01
+FRED        HICP excl. Energy+Unprocessed Food        36   Monthly      1996-01
+FRED        HICP excl. Energy (Core)                  33   Monthly      1999-12
+FRED        HICP Other Energy (Heating/Cooling)       25   Monthly      1996-01
+FRED        HICP Electricity (EA only)                 4   Monthly      1996-12
+FRED        HICP Other variants                      146   Monthly      1996-01
+FRED        HICP Non-Energy Consumption                8   Monthly      1999-12
+FRED        ECB Marginal Lending Rate                  1   Monthly      1999-01
+FRED        US Import Price Index (EU origin)          2   Monthly      2012-06
+---------------------------------------------------------------------------
+TOTAL                                                535
+  ENTSOG series  :  14  (daily gas flows)
+  FRED series    : 515  (price/inflation/equity)
+  FRED + ENTSOG  :  29  daily-frequency series
+  FRED monthly   : 482  series
+
+======================================================================
+VI. EUROSTAT — Locked Additions (Likely New vs FRED) (14 datasets)
+======================================================================
+
+Selection basis:
+  - Topic filter: consumption/price keywords
+  - Trim filter: monthly, start <= 2018-01, end >= 2026-03
+  - Overlap check: no exact FRED series ID/title matches
+
+Locked likely-new dataset codes:
+  STS_TRTU_M      Turnover and volume of sales in wholesale and retail trade - monthly data
+  EI_ISRR_M       Retail trade growth rates by NACE Rev. 2 activity - monthly data
+  EI_ISRT_M       Retail trade index by NACE Rev. 2 activity - monthly data
+  EI_BSRT_M_R2    Retail trade confidence indicator and survey results - monthly data
+  STS_TRLB_M      Labour input in wholesale and retail trade - monthly data
+  STS_INPPD_M     Producer prices in industry, domestic market - monthly data
+  STS_INPPND_M    Producer prices in industry, non domestic market - monthly data
+  STS_INPI_M      Import prices in industry - monthly data
+  STS_INPP_M      Producer prices in industry, total - monthly data
+  PRC_FSC_IDX     Food price monitoring tool
+  PRC_IPC_G20     G20 CPI all-items - Group of Twenty - Consumer price index
+  STS_COPI_M      Construction producer prices or costs, new residential buildings - monthly data
+  NRG_CB_GASM     Supply, transformation and consumption of gas - monthly data
+  EI_CPHI_M       Harmonised index of consumer prices - monthly data
+
