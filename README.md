@@ -47,4 +47,46 @@ Extracts daily gas flow data from the ENTSOG AggregatedData endpoint and aggrega
 
 #### Usage
 
-Open `methodo/01_entsog_weekly_panel.ipynb` and run all cells. Set `FORCE_MAX_HISTORY_PULL = False` in Cell 3 for incremental-only routine updates. 
+Open `methodo/01_entsog_weekly_panel.ipynb` and run all cells. Set `FORCE_MAX_HISTORY_PULL = False` in Cell 3 for incremental-only routine updates.
+
+### FRED Energy Prices: Brent & Natural Gas Europe
+
+**Source:** Federal Reserve Economic Data (FRED) API via fredapi client library
+
+**Location:** `methodo/01_entsog_weekly_panel.ipynb` (Cells 7-13)
+
+Extracts maximum-history Brent crude oil (Europe) and European natural gas price data from FRED.
+
+#### Coverage
+
+- **Series:**
+  - MCOILBRENTEU: Brent Europe (USD/bbl)
+  - PNGASEUUSDM: Natural Gas Europe (USD/MMBtu)
+- **Period:** As much history as available (typically 1970s-1980s onwards)
+- **Frequency:** Monthly observations
+- **Units:** USD/bbl and USD/MMBtu respectively
+
+#### Outputs
+
+**Energy Prices** (`data/processed/fred_energy_prices.csv`)
+  - Combined monthly price data for both commodities
+  - Columns: `date`, `brent_europe_usd_bbl`, `natgas_europe_usd_mmbtu`
+  - Includes data from earliest available through present
+  - NaN for missing observations preserved for downstream handling
+
+#### Pipeline Behavior
+
+- Fetches from FRED API using fredapi client with environment-based API key authentication
+- Requests maximum history from 1980-01-01 (FRED returns earliest available)
+- Cleans and standardizes datetime indices
+- Produces raw and normalized visualizations for exploratory analysis
+- Validates overlapping sample window for joint modeling
+
+#### Prerequisites
+
+- FRED API key stored in `FRED_API_KEY` environment variable
+- Install fredapi: `pip install fredapi`
+
+#### Usage
+
+Run Cells 7-13 in `methodo/01_entsog_weekly_panel.ipynb` after completing ENTSOG pipeline. Requires `FRED_API_KEY` to be set. 
